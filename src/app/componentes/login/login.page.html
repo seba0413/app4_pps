@@ -1,0 +1,33 @@
+<div id="custom-overlay" [style.display]="splash ? 'flex': 'none'">
+  <div class="flb">
+    <div class="Aligner-item Aligner-item--top">
+      <!-- <img src="../../../assets/nombre.png" alt=""> -->
+      Sebastian Pasquini
+    </div>
+    <img id="imagen" src="assets/icon/icon.png">
+    <div class="Aligner-item Aligner-item--bottom">
+      <!-- <img src="../../../assets/division.png" alt=""> -->
+      4 B
+    </div>
+  </div>
+</div>
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title text-center>Iniciar sesion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <img src="assets/icon/icon.png" alt="" class="icon">
+<ion-item>
+  <ion-label position="floating">Correo electrónico</ion-label> 
+  <ion-input type="text" [(ngModel)]="email" name="email"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating">Contraseña</ion-label> 
+  <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
+</ion-item>
+<br>
+<ion-button expand="block" (click) = "onSubmitLogin()">Entrar</ion-button>
+</ion-content>
