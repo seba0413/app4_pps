@@ -26,4 +26,12 @@ export class AuthService {
       this.router.navigate(['/login']);
     });
   }
+
+  getCurrentUserId(): string {
+    return this.AFauth.auth.currentUser ? this.AFauth.auth.currentUser.uid : null;
+  }
+
+  getCurrentUserMail(): string {
+    return this.AFauth.auth.currentUser.email;
+  }
 }

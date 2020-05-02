@@ -17,9 +17,9 @@
 </ion-header>
 
 <ion-content padding color="darkBlue">
-  <img src="assets/icon/icon.png" alt="" class="icon">
+  <img src="assets/logoQr.png" alt="" class="icon" style="margin-top: 15%;">
   <ion-label [hidden]='datosCorrectos' class="datos-incorrectos">Datos incorrectos</ion-label> 
-<ion-item color="darkBlue">
+<ion-item color="darkBlue" style="margin-top: 20%;">
   <ion-label position="floating">Correo electrónico</ion-label> 
   <ion-input type="text" [(ngModel)]="correo" name="correo"></ion-input>
 </ion-item> 
@@ -28,13 +28,14 @@
   <ion-input type="password" [(ngModel)]="clave" name="clave"></ion-input>
 </ion-item>
 <br>
-<ion-button expand="block" (click) = "onSubmitLogin()" color="secondary">Entrar</ion-button>
+<ion-button expand="block" (click) = "onSubmitLogin()" color="secondary" style="height: 55px;">Entrar</ion-button>
 
-<ion-item color="darkBlue">
-  <ion-label position="stacked">Usuario</ion-label>
-  <ion-select (ionChange)="onChange($event.target.value)" placeholder="Seleccione uno: ">
-    <ion-select-option *ngFor="let usuario of usuarios" value={{usuario.id}}> {{usuario.nombre}} </ion-select-option>
-  </ion-select>
-</ion-item>
+<div style="margin-top: 3%;">
+  <ion-button class="botones-3" fill="outline" (click)="onChange(0)">Admin</ion-button>
+  <ion-button class="botones-3" fill="outline" (click)="onChange(1)">Invitado</ion-button>
+  <ion-button class="botones-3" fill="outline" (click)="onChange(2)">Usuario</ion-button>
+  <ion-button class="botones-2" fill="outline" (click)="onChange(3)">Anónimo</ion-button>
+  <ion-button class="botones-2" fill="outline" (click)="onChange(4)">Tester</ion-button>
+</div>
 
 </ion-content>
