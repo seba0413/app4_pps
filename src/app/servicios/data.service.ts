@@ -3,10 +3,13 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { AuthService } from './auth.service';
 import { map } from 'rxjs/operators';
 
-interface Usuario {
+export class Usuario {
   id: string;
   saldo: number;
   perfil: string;
+  cargo10: number;
+  cargo100: number;
+  cargo50: number;
 }
 
 @Injectable({
@@ -41,13 +44,47 @@ export class DataService {
     );
   }
 
-  updateDatabase(id, saldoParam) {
-    console.log('update id: ', id, 'saldo: ', saldoParam);
-    return this.dbRef.doc(id).update({
-      saldo: saldoParam
-    });
+  updateDatabase(id, saldoParam, cargaAdmin) {
+    if ( cargaAdmin.isAdmin ) {
+      switch ( cargaAdmin.tipo ) {
+        case 'cargo10':
+          return this.dbRef.doc(id).update({
+            saldo: saldoParam,
+            cargo10: cargaAdmin.numero
+          });
+          break;
+        case 'cargo50':
+          return this.dbRef.doc(id).update({
+            saldo: saldoParam,
+            cargo50: cargaAdmin.numero
+          });
+          break;
+        case 'cargo100':
+          return this.dbRef.doc(id).update({
+            saldo: saldoParam,
+            cargo100: cargaAdmin.numero
+          });
+          break;
+      }
+    } else {
+      return this.dbRef.doc(id).update({
+        saldo: saldoParam
+      });
+    }
+  }
+
+  anularCarga( id, isAdmin ) {
+    if ( isAdmin ) {
+      return this.dbRef.doc(id).update({
+        saldo: 0,
+        cargo10: 0,
+        cargo50: 0,
+        cargo100: 0
+      });
+    } else {
+      return this.dbRef.doc(id).update({
+        saldo: 0
+      });
+    }
   }
 }
-
-
-
